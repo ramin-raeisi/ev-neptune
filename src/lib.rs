@@ -41,7 +41,7 @@ mod gpu;
 pub use gpu::GPUSelector;
 
 #[cfg(all(feature = "gpu", not(target_os = "macos")))]
-mod cl;
+pub mod cl;
 
 /// Batch Hasher
 #[cfg(feature = "gpu")]
