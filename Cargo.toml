@@ -12,7 +12,7 @@ lazy_static = "1.4.0"
 bellperson = { git = "ssh://git@github.com/nilfoundation/crusty3-zk.git", branch = "master" }
 blake2s_simd = "0.5"
 byteorder = "1"
-ff = { git = "https://github.com/nilfoundation/crusty3-ff.git", branch = "1-montgomery-multiplication", package = "fff" }
+ff = { git = "https://github.com/nilfoundation/crusty3-ff.git", rev = "6c3e204", package = "fff" }
 generic-array = "0.13.2"
 paired = { git = "https://github.com/nilfoundation/crusty3-pairing", version = "0.20.0", features = ["serde"] }
 triton = { git = "https://github.com/nilfoundation/crusty3-neptune-triton", version = "1.1.0", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
@@ -28,7 +28,7 @@ serde_json = "1.0.53"
 
 [build-dependencies]
 paired = { git = "https://github.com/nilfoundation/crusty3-pairing", version = "0.20.0" }
-ff = { git = "https://github.com/nilfoundation/crusty3-ff.git", branch = "1-montgomery-multiplication", package = "fff" }
+ff = { git = "https://github.com/nilfoundation/crusty3-ff.git", rev = "6c3e204", package = "fff" }
 
 [[bench]]
 name = "hash"
