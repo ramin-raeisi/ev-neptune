@@ -3,8 +3,13 @@ use std::collections::HashMap;
 use std::fmt;
 use std::ptr;
 use std::sync::{Arc, Mutex};
+
+use log::*;
 use triton::bindings;
 use triton::FutharkContext;
+
+#[cfg(all(feature = "gpu", not(target_os = "macos")))]
+pub use crate::gpu::GPUSelector;
 
 const MAX_LEN: usize = 128;
 
@@ -34,6 +39,7 @@ pub enum ClError {
     CannotCreateContext,
     CannotCreateQueue,
 }
+
 pub type ClResult<T> = std::result::Result<T, ClError>;
 
 impl fmt::Display for ClError {
@@ -299,12 +305,12 @@ pub fn default_futhark_context() -> ClResult<Arc<Mutex<FutharkContext>>> {
             );
             futhark_context(GPUSelector::BusId(bus_id))
         }
-        .or_else(|_| {
-            error!(
-                "A device with the given bus-id doesn't exist! Defaulting to the first device..."
-            );
-            futhark_context(GPUSelector::Index(0))
-        }),
+            .or_else(|_| {
+                error!(
+                    "A device with the given bus-id doesn't exist! Defaulting to the first device..."
+                );
+                futhark_context(GPUSelector::Index(0))
+            }),
         None => futhark_context(GPUSelector::Index(0)),
     }
 }
