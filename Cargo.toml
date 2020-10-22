@@ -15,7 +15,7 @@ byteorder = "1"
 ff = { git = "https://github.com/nilfoundation/crusty3-ff.git", rev = "6c3e204", package = "fff" }
 generic-array = "0.13.2"
 paired = { git = "https://github.com/nilfoundation/crusty3-pairing", version = "0.20.0", features = ["serde"] }
-triton = { git = "https://github.com/nilfoundation/crusty3-neptune-triton",version = "2.0.0", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
+triton = { git = "https://github.com/nilfoundation/crusty3-neptune-triton", version = "1.1.1", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
 log = "0.4.8"
 
 [dev-dependencies]
