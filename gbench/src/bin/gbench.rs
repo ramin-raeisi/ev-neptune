@@ -111,15 +111,15 @@ fn main() -> Result<(), Error> {
     info!("max tree batch size: {}", max_tree_batch_size);
 
     // Comma separated list of GPU bus-ids
-    let batcher_types = std::env::var("NEPTUNE_GBENCH_GPUS")
+    let gpus = std::env::var("NEPTUNE_GBENCH_GPUS");
+    let batcher_types = gpus
         .map(|v| {
             v.split(",")
                 .map(|s| s.parse::<u32>().expect("Invalid Bus-Id number!"))
-                .map(|bus_id| BatcherType::CustomGPU(neptune::GPUSelector::BusId(bus_id)))
+                .map(|bus_id| BatcherType::CustomGPU(neptune::cl::GPUSelector::BusId(bus_id)))
                 .collect::<Vec<_>>()
         })
         .unwrap_or(vec![BatcherType::GPU]);
-
     let mut threads = Vec::new();
     for batcher_type in batcher_types {
         threads.push(thread::spawn(move || {
@@ -128,7 +128,7 @@ fn main() -> Result<(), Error> {
                 info!("{} --> Run {}", log_prefix, i);
                 bench_column_building(
                     &log_prefix,
-                    Some(batcher_type),
+                    Some(batcher_type.clone()),
                     leaves,
                     max_column_batch_size,
                     max_tree_batch_size,
