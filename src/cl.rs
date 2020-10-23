@@ -6,9 +6,6 @@ use std::sync::{Arc, Mutex, RwLock};
 use triton::bindings;
 use triton::FutharkContext;
 
-#[cfg(all(feature = "gpu", not(target_os = "macos")))]
-pub use crate::gpu::GPUSelector;
-
 const MAX_LEN: usize = 128;
 
 #[repr(C)]
