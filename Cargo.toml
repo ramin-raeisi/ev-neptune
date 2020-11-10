@@ -1,7 +1,7 @@
 [package]
 name = "neptune"
 description = "Poseidon hashing over BLS12-381 for Filecoin."
-version = "2.0.0"
+version = "2.2.0"
 authors = ["porcuquine <porcuquine@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
@@ -9,26 +9,29 @@ repository = "https://github.com/porcuquine/poseidon"
 
 [dependencies]
 lazy_static = "1.4.0"
-bellperson = { git = "ssh://git@github.com/nilfoundation/crusty3-zk.git", branch = "master" }
+bellperson = { git = "ssh://git@github.com/nilfoundation/fil-zk.git", branch ="master", default-features = false }
 blake2s_simd = "0.5"
 byteorder = "1"
-ff = { git = "https://github.com/nilfoundation/crusty3-ff.git", rev = "6c3e204", package = "fff" }
 generic-array = "0.13.2"
 paired = { git = "https://github.com/nilfoundation/crusty3-pairing", version = "0.20.0", features = ["serde"] }
-triton = { git = "https://github.com/nilfoundation/crusty3-neptune-triton", version = "2.0.0", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
+ff = { version = "0.2.1", package = "fff" }
+generic-array = "0.14.4"
 log = "0.4.8"
+
+[target.'cfg(not(target_os = "macos"))'.dependencies]
+triton = { git = "https://github.com/nilfoundation/crusty3-neptune-triton", version = "2.0.0", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
 
 [dev-dependencies]
 criterion = "0.3"
 rand = "0.7.0"
-sha2 = "0.8"
+sha2 = "0.9"
 tempdir = "0.3"
 rand_xorshift = "0.2.0"
 serde_json = "1.0.53"
 
 [build-dependencies]
-paired = { git = "https://github.com/nilfoundation/crusty3-pairing", version = "0.20.0" }
-ff = { git = "https://github.com/nilfoundation/crusty3-ff.git", rev = "6c3e204", package = "fff" }
+bellperson = { git = "ssh://git@github.com/nilfoundation/fil-zk.git", branch = "master", default-features = false }
+ff = { version = "0.2.1", package = "fff" }
 
 [[bench]]
 name = "hash"
@@ -43,5 +46,12 @@ incremental = false
 codegen-units = 1
 
 [features]
+default = ["pairing"]
 gpu = ["triton"]
-derive = ["ff/fff_derive"]
+pairing = ["bellperson/pairing"]
+blst = ["bellperson/blst"]
+
+[workspace]
+members = [
+  "gbench",
+]
