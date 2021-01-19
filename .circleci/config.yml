@@ -35,12 +35,21 @@ commands:
           no_output_timeout: 5m
       - run:
           name: Test (pairing, GPU) (<< parameters.target >>)
-          command: TARGET=<< parameters.target >> cargo test --release --features gpu  -- --test-threads=1
+          command: TARGET=<< parameters.target >> cargo test --release --no-default-features --features pairing,gpu -- --test-threads=1
           no_output_timeout: 30m
 
       - run:
           name: Test (blst, GPU) (<< parameters.target >>)
           command: TARGET=<< parameters.target >> cargo test --release --no-default-features --features blst,gpu -- --test-threads=1
+          no_output_timeout: 30m
+      - run:
+          name: Test (pairing, opencl) (<< parameters.target >>)
+          command: TARGET=<< parameters.target >> cargo test --release --no-default-features --features pairing,opencl -- --test-threads=1
+          no_output_timeout: 30m
+
+      - run:
+          name: Test (blst, opencl) (<< parameters.target >>)
+          command: TARGET=<< parameters.target >> cargo test --release --no-default-features --features blst,opencl -- --test-threads=1
           no_output_timeout: 30m
 
 jobs:
