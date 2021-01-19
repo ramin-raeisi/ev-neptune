@@ -184,10 +184,10 @@ jobs:
       - run: sudo apt install -y ocl-icd-opencl-dev
       - run:
           name: Run cargo release build (pairing, gpu)
-          command: cargo +nightly build -Zpackage-features --release -p gbench --no-default-features --features pairing,gpu
+          command: cargo +nightly build --release -p gbench --no-default-features --features pairing,gpu
       - run:
           name: Run cargo release build (blst, gpu)
-          command: cargo +nightly build -Zpackage-features --release -p gbench --no-default-features --features blst,gpu
+          command: cargo +nightly build --release -p gbench --no-default-features --features blst,gpu
 
   benches:
     executor: default
