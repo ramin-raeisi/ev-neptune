@@ -61,7 +61,6 @@ where
     #[cfg(feature = "gpu")]
     GPU(GPUBatchHasher<A>),
     #[cfg(not(feature = "gpu"))]
-    GPU(NoGPUBatchHasher<A>),
     CPU(SimplePoseidonBatchHasher<A>),
     #[cfg(feature = "opencl")]
     OpenCL(CLBatchHasher<A>),
@@ -75,8 +74,6 @@ where
         match self {
             #[cfg(feature = "gpu")]
             Batcher::GPU(_) => BatcherType::GPU,
-            #[cfg(not(feature = "gpu"))]
-            Batcher::GPU(_) => unimplemented!(),
             Batcher::CPU(_) => BatcherType::CPU,
             #[cfg(feature = "opencl")]
             Batcher::OpenCL(_) => BatcherType::OpenCL,
