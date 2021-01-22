@@ -162,8 +162,9 @@ where
 {
     fn hash(&mut self, preimages: &[GenericArray<Fr, A>]) -> Result<Vec<Fr>, Error> {
         match self {
-            Batcher::GPU(batcher) => batcher.hash(preimages),
             Batcher::CPU(batcher) => batcher.hash(preimages),
+            #[cfg(feature = "gpu")]
+            Batcher::GPU(batcher) => batcher.hash(preimages),
             #[cfg(feature = "opencl")]
             Batcher::OpenCL(batcher) => batcher.hash(preimages),
         }
@@ -171,37 +172,11 @@ where
 
     fn max_batch_size(&self) -> usize {
         match self {
-            Batcher::GPU(batcher) => batcher.max_batch_size(),
             Batcher::CPU(batcher) => batcher.max_batch_size(),
+            #[cfg(feature = "gpu")]
+            Batcher::GPU(batcher) => batcher.max_batch_size(),
             #[cfg(feature = "opencl")]
             Batcher::OpenCL(batcher) => batcher.max_batch_size(),
         }
-    }
-}
-
-// /// NoGPUBatchHasher is a dummy required so we can build with the gpu flag even on platforms on which we cannot currently
-// /// run with GPU.
-pub struct NoGPUBatchHasher<A>(PhantomData<A>);
-
-impl<A> BatchHasher<A> for NoGPUBatchHasher<A>
-where
-    A: Arity<Fr>,
-{
-    fn hash(&mut self, _preimages: &[GenericArray<Fr, A>]) -> Result<Vec<Fr>, Error> {
-        unimplemented!();
-    }
-
-    fn max_batch_size(&self) -> usize {
-        unimplemented!();
-    }
-}
-
-#[cfg(feature = "gpu")]
-impl<A> NoGPUBatchHasher<A>
-where
-    A: Arity<Fr>,
-{
-    fn futhark_context(&self) -> Arc<Mutex<FutharkContext>> {
-        unimplemented!()
     }
 }

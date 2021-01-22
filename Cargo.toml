@@ -1,7 +1,7 @@
 [package]
 name = "neptune"
 description = "Poseidon hashing over BLS12-381 for Filecoin."
-version = "2.4.0"
+version = "2.6.0"
 authors = ["porcuquine <porcuquine@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
@@ -47,7 +47,8 @@ incremental = false
 codegen-units = 1
 
 [features]
-default = ["blst"]
+default = ["blst, opencl"]
+gpu = ["triton", "rust-gpu-tools"]
 opencl = ["rust-gpu-tools"]
 pairing = ["bellperson/pairing"]
 blst = ["bellperson/blst"]
