@@ -60,6 +60,7 @@ where
 {
     #[cfg(feature = "gpu")]
     GPU(GPUBatchHasher<A>),
+    #[cfg(not(feature = "gpu"))]
     CPU(SimplePoseidonBatchHasher<A>),
     #[cfg(feature = "opencl")]
     OpenCL(CLBatchHasher<A>),

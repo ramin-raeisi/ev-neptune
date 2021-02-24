@@ -9,7 +9,7 @@ repository = "https://github.com/filecoin-project/neptune"
 
 [dependencies]
 lazy_static = "1.4.0"
-bellperson = { git = "ssh://git@git.wky.cloud/nilfoundation/bellperson.git", branch = "master", default-features = false }
+bellperson = { git = "ssh://git@github.com/nilfoundation/fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
 blake2s_simd = "0.5"
 blstrs = { version = "0.2.0", optional = true }
 byteorder = "1"
@@ -18,9 +18,9 @@ ff = { version = "0.2.1", package = "fff" }
 generic-array = "0.14.4"
 log = "0.4.8"
 rust-gpu-tools = { version = "0.3.0", optional = true }
-triton = { version = "2.1.0", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
+triton = { git = "ssh://git@github.com/nilfoundation/crusty3-neptune-triton", branch = "master", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
 itertools = { version = "0.8.0" }
-ff-cl-gen = "0.2.0"
+ff-cl-gen = { git = "ssh://git@github.com/nilfoundation/ff-cl-gen", branch = "master" }
 
 [dev-dependencies]
 criterion = "0.3"
@@ -31,7 +31,7 @@ rand_xorshift = "0.2.0"
 serde_json = "1.0.53"
 
 [build-dependencies]
-bellperson = { git = "ssh://git@git.wky.cloud/nilfoundation/bellperson.git", branch = "master", default-features = false }
+bellperson = { git = "ssh://git@github.com/nilfoundation/fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
 ff = { version = "0.2.1", package = "fff" }
 
 [[bench]]
@@ -47,7 +47,7 @@ incremental = false
 codegen-units = 1
 
 [features]
-default = ["pairing"]
+default = ["blst", "opencl"]
 gpu = ["triton", "rust-gpu-tools"]
 opencl = ["rust-gpu-tools"]
 pairing = ["bellperson/pairing"]
