@@ -9,7 +9,7 @@ repository = "https://github.com/filecoin-project/neptune"
 
 [dependencies]
 lazy_static = "1.4.0"
-bellperson = { git = "ssh://git@github.com/nilfoundation/eliovp-fil-zk.git", branch = "master", default-features = false }
+bellperson = { git = "ssh://git@github.com/nilfoundation/eliovp-fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
 blake2s_simd = "0.5"
 blstrs = { version = "0.2.0", optional = true }
 byteorder = "1"
