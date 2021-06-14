@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://book.async.rs/overview
 
 ## Unreleased
 
+## 3.0.0 - 2021-6-1
+- Breaking update of `bellperson` to `0.14` and associated dependency upgrades.
+
+## 2.7 - 2021-3-9
+- Use bellperson 0.13.
+
 ## 2.6 - 2021-1-21
 - Pure OpenCL implementation of batch hashing. (https://github.com/filecoin-project/neptune/pull/78)
 
