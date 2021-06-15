@@ -1,7 +1,7 @@
 [package]
 name = "neptune"
 description = "Poseidon hashing over BLS12-381 for Filecoin."
-version = "2.6.0"
+version = "3.0.0"
 authors = ["porcuquine <porcuquine@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
@@ -11,10 +11,10 @@ repository = "https://github.com/filecoin-project/neptune"
 lazy_static = "1.4.0"
 bellperson = { git = "ssh://git@github.com/nilfoundation/eliovp-fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
 blake2s_simd = "0.5"
-blstrs = { version = "0.2.0", optional = true }
+blstrs = { version = "0.3.0", optional = true }
 byteorder = "1"
 paired = { version = "0.21.0", features = ["serde"] }
-ff = { version = "0.2.1", package = "fff" }
+ff = { version = "0.3.1", package = "fff" }
 generic-array = "0.14.4"
 log = "0.4.8"
 rust-gpu-tools = { version = "0.3.0", optional = true }
@@ -32,7 +32,7 @@ serde_json = "1.0.53"
 
 [build-dependencies]
 bellperson = { git = "ssh://git@github.com/nilfoundation/eliovp-fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
-ff = { version = "0.2.1", package = "fff" }
+ff = { version = "0.3.1", package = "fff" }
 
 [[bench]]
 name = "hash"
