@@ -9,7 +9,7 @@ repository = "https://github.com/filecoin-project/neptune"
 
 [dependencies]
 lazy_static = "1.4.0"
-bellperson = { git = "ssh://git@github.com/nilfoundation/eliovp-fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
+bellperson = { git = "https://github.com/ramin-raeisi/ev-fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
 blake2s_simd = "0.5"
 blstrs = { version = "0.3.0", optional = true }
 byteorder = "1"
@@ -18,9 +18,9 @@ ff = { version = "0.3.1", package = "fff" }
 generic-array = "0.14.4"
 log = "0.4.8"
 rust-gpu-tools = { version = "0.3.0", optional = true }
-triton = { git = "ssh://git@github.com/nilfoundation/eliovp-crusty3-neptune-triton.git", branch = "master", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
+triton = { git = "https://github.com/ramin-raeisi/ev-neptune-triton.git", branch = "master", package = "neptune-triton", default-features = false, features = ["opencl"], optional = true }
 itertools = { version = "0.8.0" }
-ff-cl-gen = { git = "ssh://git@github.com/nilfoundation/eliovp-ff-cl-gen.git", branch = "master" }
+ff-cl-gen = { git = "https://github.com/ramin-raeisi/ev-ff-cl-gen.git", branch = "master" }
 
 [dev-dependencies]
 criterion = "0.3"
@@ -31,7 +31,7 @@ rand_xorshift = "0.2.0"
 serde_json = "1.0.53"
 
 [build-dependencies]
-bellperson = { git = "ssh://git@github.com/nilfoundation/eliovp-fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
+bellperson = { git = "https://github.com/ramin-raeisi/ev-fil-zk.git", branch = "master", default-features = false, features = ["gpu"] }
 ff = { version = "0.3.1", package = "fff" }
 
 [[bench]]
